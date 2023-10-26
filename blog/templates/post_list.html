@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container my-5">
+
+    <div class="row">
+
+        {% comment %} Columna izquierda {% endcomment %}
+        <div class="col col-sm-12 col-md-7 col-lg-8 col-xl-9 order-2 order-sm-2 order-md-1 mx-auto mb-5">
+            {% comment %} Posteos {% endcomment %}
+            <div class="row">
+                {% for post in post_list %}
+                <div class="col col-lg-6">
+                    <div class="card mb-4">
+                        <img card="img-fluid" src="{{post.image}}" alt=""></img>
+                        <div class="card-body">
+                            <small>{{post.category.name}}</small>
+                            <h3 class="card-title">{{post.title}}</h3>
+                            <p>{{post.description}}</p>
+                            <a href="{% url 'post_detail' pk=post.pk %}">Seguir leyendo</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% comment %} Columa derecha {% endcomment %}
+        <div class="col col-sm-6 col-md-5 col-lg-4 col-xl-3 order-1 order-sm-1 order-md-2 mx-auto mb-5">
+            {% comment %} Categorias {% endcomment %}
+            <div class="card text-center mb-4">
+                <div class="card-header">
+                    <h5 class="card-title">Categorías</h5>
+                </div>
+                <div class="card-body">
+                    {% for category in category_list %}
+                    <p><a href="{% url 'post_by_category' category=category %}">{{category.name}}</a></p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
