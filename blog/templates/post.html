@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="nav my-4">
+    <p>
+      <span class="fw-bold me-2">Categorías:</span>
+      {% for category in category_list %}
+      <a href="{% url 'post_by_category' category=category %}" class="me-2">{{category.name}}</a>
+      {% endfor %}
+    </p>
+  </div>
+
+  <h1 class="mb-4">{{ post.title }}</h1>
+  <img class="img-fluid mb-4" src="{{ post.image }}" alt="{{ post.title }}">
+  <div style="text-align: justify;">
+    {% autoescape off %}
+    {{ post.content }}
+    {% endautoescape %}
+  </div>
+
+  <div class="col col-lg-4 col-md-6 col-sm-8 col-auto">
+    <div class="my-5">
+      <h3>Comentarios...</h3>
+      {% if not post.comments.all %}
+      <p class="lead">Sé el primero en comentar!</p>
+      {% else %}
+      {% for comment in post.comments.all %}
+      <div class="my-4">
+        <small>{{ comment.author }} - {{ comment.date }}</small>
+        <p>{{ comment.comment }}</p>
+        {% for response in comment.responses.all %}
+        <div class="mx-4">
+          <small>{{ response.author }} - {{ response.date }}</small>
+          <p>{{ response.response }}</p>
+        </div>
+        {% endfor %}
+        {% if user.is_authenticated and user.is_staff %}
+        <p class="lead">Responder:</p>
+        <form method="post" action="{% url 'add_response' comment_id=comment.pk %}">
+          {% csrf_token %}
+          {{ response_form|crispy }}
+          <input class="btn" type="submit" value="Responder">
+        </form>
+        {% endif %}
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+
+    {% comment %} Agregar comentario {% endcomment %}
+
+    <p class="lead">Agregar un comentario:</p>
+    <form method="post" action="{% url 'add_comment' post_id=post.pk %}">
+      {% csrf_token %}
+      {{ comment_form|crispy }}
+      <input class="btn" type="submit" value="Comentar">
+    </form>
+
+  </div>
+
+</div>
+
+{% endblock %}

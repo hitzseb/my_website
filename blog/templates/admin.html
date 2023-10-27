@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <table class="table">
+        <thead class="table-light">
+            <tr>
+                <th>Categorías</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in category_list %}
+            <tr>
+                <td>{{ category.name }}</td>
+                <td><a href="{% url 'category_edit' pk=category.pk %}">Editar</a></td>
+                <td><a href="{% url 'category_delete' pk=category.pk %}">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+        <thead class="table-light">
+            <tr>
+                <th>Posteos</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in post_list %}
+            <tr>
+                <td><a href="{% url 'post' pk=post.pk %}">{{ post.title }}</a></td>
+                <td><a href="{% url 'post_edit' pk=post.pk %}">Editar</a></td>
+                <td><a href="{% url 'post_delete' pk=post.pk %}">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

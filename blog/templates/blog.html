@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="nav my-4">
+        <p>
+          <span class="fw-bold me-2">Categorías:</span>
+          {% for category in category_list %}
+          <a href="{% url 'post_by_category' category=category %}" class="me-2">{{category.name}}</a>
+          {% endfor %}
+        </p>
+    </div>
+
+    <div class="row">
+        {% for post in post_list %}
+        <div class="col col-md-6 col-auto">
+            <div class="card mb-4">
+                <img card="img-fluid" src="{{post.image}}" alt=""></img>
+                <div class="card-body">
+                    <small>{{post.category.name}}</small>
+                    <h3 class="card-title">{{post.title}}</h3>
+                    <p>{{post.description}}</p>
+                    <a href="{% url 'post' pk=post.pk %}">Seguir leyendo</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

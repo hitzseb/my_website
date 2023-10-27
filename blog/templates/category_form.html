@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12 w-100 mx-auto" style="max-width: 625px;">
+            <h2>{% if category %}Editar categoría:{% else %}Crear categoría:{% endif %}</h2>
+            <form method="post" action="{% if category %}{% url 'category_edit' pk=category.pk %}{% else %}{% url 'category_create' %}{% endif %}">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input class="btn" type="submit" value="{% if category %}Editar{% else %}Crear{% endif %} post">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

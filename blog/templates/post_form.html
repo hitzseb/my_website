@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12 w-100 mx-auto" style="max-width: 625px;">
+            <h2>{% if post %}Editar post:{% else %}Crear post:{% endif %}</h2>
+            <form method="post" action="{% if post %}{% url 'post_edit' pk=post.pk %}{% else %}{% url 'post_create' %}{% endif %}">
+                {% csrf_token %}
+                {{ myform.media }}
+                {{ form|crispy }}
+                <input class="btn" type="submit" value="{% if post %}Editar{% else %}Crear{% endif %} post">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+
+{% endblock %}
