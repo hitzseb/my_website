@@ -15,12 +15,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import include, path
+
+def redirect_to_portfolio(request):
+    return redirect('portfolio')
 
 urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('admin/', redirect_to_portfolio),
     path('admin/', admin.site.urls),
-    path('', include('portfolio.urls')),
+    path('portfolio', include('portfolio.urls')),
     path('contacto/', include('contact.urls')),
     path('blog/', include('blog.urls')),
+    path('', redirect_to_portfolio),
 ]
