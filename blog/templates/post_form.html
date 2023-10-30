@@ -12,7 +12,7 @@
                 {% csrf_token %}
                 {{ myform.media }}
                 {{ form|crispy }}
-                <input class="btn" type="submit" value="{% if post %}Editar{% else %}Crear{% endif %} post">
+                <input class="btn btn-primary" type="submit" value="{% if post %}Editar{% else %}Crear{% endif %} post">
             </form>
         </div>
     </div>

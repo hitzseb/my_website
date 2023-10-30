@@ -11,7 +11,7 @@
             <form method="post" action="{% if category %}{% url 'category_edit' pk=category.pk %}{% else %}{% url 'category_create' %}{% endif %}">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <input class="btn" type="submit" value="{% if category %}Editar{% else %}Crear{% endif %} post">
+                <input class="btn btn-primary" type="submit" value="{% if category %}Editar{% else %}Crear{% endif %} post">
             </form>
         </div>
     </div>

@@ -2,6 +2,14 @@
 
 {% block content %}
 <div class="container my-5">
+
+    <div class="nav my-4">
+        <p>
+            <a class="me-2" href="{% url 'category_create' %}">Agregar categoría</a>
+            <a class="me-2" href="{% url 'post_create' %}">Agregar post</a>
+        </p>
+    </div>
+
     <table class="table">
         <thead class="table-light">
             <tr>

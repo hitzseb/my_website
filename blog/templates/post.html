@@ -45,7 +45,7 @@
         <form method="post" action="{% url 'add_response' comment_id=comment.pk %}">
           {% csrf_token %}
           {{ response_form|crispy }}
-          <input class="btn" type="submit" value="Responder">
+          <input class="btn btn-primary" type="submit" value="Responder">
         </form>
         {% endif %}
       </div>
@@ -59,7 +59,7 @@
     <form method="post" action="{% url 'add_comment' post_id=post.pk %}">
       {% csrf_token %}
       {{ comment_form|crispy }}
-      <input class="btn" type="submit" value="Comentar">
+      <input class="btn btn-primary" type="submit" value="Comentar">
     </form>
 
   </div>
