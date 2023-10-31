@@ -4,10 +4,10 @@
 
 <div class="container my-5">
 
-    <!-- Header -->
+    <!-- About -->
 
     <section class="container my-5 py-5">
-        <div class="row justify-content-center">
+        <div class="row my-5 py-5 justify-content-center">
             <div class="col col-sm-12 col-md-4 col-lg-3 col-auto text-center mb-3 p-3">
                 <img src="https://avatars.githubusercontent.com/u/59125675?v=4" alt="My picture" class="rounded-circle"
                     style="width: 15rem; height: 15rem;">
@@ -17,30 +17,26 @@
                 <h2 class="display-5">{{profile.title}}</h2>
             </div>
         </div>
-    </section>
-
-    <!-- About -->
-
-    <section class="container my-5 py-5">
-        <div class="p-5 text-center bg-body-tertiary rounded-3 shadow">
-            <h3 class="text-body-emphasis mb-3">Acerca de mi:</h1>
-                <p class="lead">{{profile.about}}</p>
+        <div class="row my-5 py-5">
+            <div class="p-5 text-center bg-body-tertiary rounded-3 shadow">
+                <p class="lead"><span class="fw-bold me-2">Acerca de mi:</span>{{profile.about}}</p>
+            </div>
         </div>
     </section>
 
-    <!-- Technologies -->
+    <!-- Technologias -->
 
     <section class="container my-5 py-5">
 
-        <div class="row text-center mb-3">
+        <div class="row text-center my-5 py-5">
             <h3>Tecnologías que uso:</h3>
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center my-5 py-5">
 
             {% for technology in profile.technologies %}
 
-            <div class="card m-3 p-3 border-light shadow" style="width: 8rem; height: 8rem">
+            <div class="card m-3 p-3 border-light shadow" style="width: 9rem; height: 9rem">
                 <img src="{{ technology.logo }}" class="card-img-top" alt="{{ technology.alt }}">
             </div>
 
@@ -48,14 +44,14 @@
         </div>
     </section>
 
-    <!-- Projects -->
+    <!-- Proyectos -->
 
     <section class="container my-5 py-5">
-        <div class="row text-center mb-3">
+        <div class="row text-center my-5 py-5">
             <h3>Mis proyectos:</h3>
         </div>
         {% for project in profile.projects %}
-        <div class="row">
+        <div class="row my-5 py-5">
             <div class="col col-lg-6 col-md-8 col-sm-12 col-auto mx-auto mb-4">
                 <div class="card border-light m-3 shadow">
                     <a href="{{project.link}}" target="_blank">
